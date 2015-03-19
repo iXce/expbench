@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 OUT_PATH = '/meleze/data0/public_html/gseguin/expcenter/index.html'
+TITLE = "Guillaume's experiments hub"
 
 import sys
 sys.path.append("/scratch/code/make_webpage")
@@ -29,7 +30,7 @@ conn.close()
 
 nrows = len(rows)
 
-header = ['ID', 'Description', 'APT task', 'Status', 'Params', 'NRuns', 'Report']
+header = ['ID', 'Description', 'APT task', 'Git', 'Status', 'Params', 'NRuns', 'Report']
 
 def to_table_item(s):
     item = {}
@@ -57,14 +58,14 @@ for row in rows:
         row_report = to_table_item(row_report)
     row_desc = {"type": "text", "text": row['name']}
     if row['explink']: row_desc['link'] = row['explink']
-    page_row = [row['id'], row_desc, row['apt_taskid'], row_status, row_params, row['nruns'], row_report]
+    page_row = [row['id'], row_desc, row['apt_taskid'], row['gitcommit'], row_status, row_params, row['nruns'], row_report]
     page.append(page_row)
 
 data = {}
 data['params'] = {
         'target': OUT_PATH,
         'target_dir': os.path.dirname(OUT_PATH),
-        'title': 'Guillaume\'s experiments hub',
+        'title': TITLE,
         'header': header,
         'extracss': """#maintable td, #maintable th {border: 1px solid #888; padding: 5px;} #maintable { margin-left: 10px; margin-right: 10px;}""",
         'extraimages': [os.path.join(BENCH_DIR, 'img', 'running.gif'),
