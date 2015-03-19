@@ -1,0 +1,5 @@
+*.pyc
+*~
+*.swp
+*.swo
+db_creds.m

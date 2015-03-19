@@ -1,0 +1,5 @@
+db_user = 'thematguy';
+db_password = '??supersecretpassword!!1';
+db_host = 'your_postgresql_host';
+db_port = 5432;
+db_database = 'my_expbench';
